@@ -15,7 +15,7 @@ public class AnimalManager {
         return animalList;
     }
 
-    public List<AnimalDTO> searchAnimal(String name){
+    public List<AnimalDTO> searchname(String name){
         List<AnimalDTO> searchList = new ArrayList<>();
         for(AnimalDTO animal : searchList){
             if(animal.getName().contains(name)){

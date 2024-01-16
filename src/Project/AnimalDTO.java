@@ -7,13 +7,13 @@ public class AnimalDTO {
     private String species;
     private String name;
 
-    public AnimalDTO(String species, String name) {
+    public AnimalDTO(String name, String species) {
         this.id = AnimalDTO.nextId++;
         this.species = species;
         this.name = name;
     }
 
-    public AnimalDTO(int id, String species, String name) {
+    public AnimalDTO(int id, String name, String species) {
         this.id = id;
         this.species = species;
         this.name = name;

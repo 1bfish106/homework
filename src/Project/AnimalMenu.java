@@ -41,7 +41,7 @@ public class AnimalMenu {
                    sortMenu();
                    break;
                case 4:
-                   searchAnimal();
+                   searchname();
                    break;
                case 5:
                    searchname();
@@ -66,18 +66,18 @@ public class AnimalMenu {
     public void addList() {
         System.out.println("===== 동물 추가 =====");
         System.out.print("동물 이름 입력 : ");
-        String animal = sc.nextLine();
-        System.out.print("종 입력 : ");
         String name = sc.nextLine();
+        System.out.print("종 입력 : ");
+        String species = sc.nextLine();
 
-      animalManager.addList(new AnimalDTO(animal, name));
+      animalManager.addList(new AnimalDTO(name, species));
     }
     public void selectList(){
         System.out.println("=====동물을 전체 조회합니다=====");
         List<AnimalDTO> animalList = animalManager.selectAnimal();
         if(!animalList.isEmpty()){
-            for (AnimalDTO animal : animalList){
-                System.out.println(animal);
+            for (AnimalDTO name : animalList){
+                System.out.println(name);
             }
         }else {
             System.out.println("목록이 존재하지 않습니다.");
@@ -114,7 +114,7 @@ public class AnimalMenu {
                     return o1.getName().compareTo(o2.getName());
                 }
             });else if (menu == 2){
-                sortList.sort(new AscName());
+                sortList.sort(new AscSpecies());
         }else if (menu == 3){
                 sortList.sort(new Descname());
         }else {
@@ -125,10 +125,10 @@ public class AnimalMenu {
         }
     }
 
-    public void searchAnimal(){
+    public void searchname(){
         System.out.println("====동물명으로 검색====");
         System.out.println("동물명 입력 : ");
-        List<AnimalDTO> searchList = animalManager.searchAnimal(sc.nextLine());
+        List<AnimalDTO> searchList = animalManager.searchname(sc.nextLine());
 
         if(!searchList.isEmpty()){
             for(int i = 0; i < searchList.size(); i++){
@@ -140,7 +140,7 @@ public class AnimalMenu {
 
     }
 
-    public void searchname(){
+    public void searchSpecies(){
         System.out.println("====종으로 검색====");
         System.out.println("종을 입력하세요 : ");
         List<AnimalDTO> searchList = animalManager.searchSpecies(sc.nextLine());
