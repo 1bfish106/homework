@@ -7,8 +7,8 @@ public class AnimalManager {
 
     private List<AnimalDTO> AnimalList = new ArrayList<>();
 
-    public void addList(AnimalDTO Animal){
-        AnimalList.add(Animal);
+    public void addList(AnimalDTO animal){
+        AnimalList.add(animal);
     }
 
     public List<AnimalDTO> selectAnimal(){
