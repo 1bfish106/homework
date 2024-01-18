@@ -17,7 +17,8 @@ public class AnimalManager {
 
     public List<AnimalDTO> searchname(String name){
         List<AnimalDTO> searchList = new ArrayList<>();
-        for(AnimalDTO animal : searchList){
+
+        for(AnimalDTO animal : animalList){
             if(animal.getName().contains(name)){
                 searchList.add(animal);
             }
@@ -25,14 +26,13 @@ public class AnimalManager {
         return searchList;
     }
 
-    public List<AnimalDTO> searchSpecies (String species){
+    public List<AnimalDTO> searchSpecies(String species) {
         List<AnimalDTO> searchList = new ArrayList<>();
-        for(AnimalDTO animal : searchList){
-            if(animal.getSpecies().contains(species)){
+        for (AnimalDTO animal : animalList) {
+            if (animal.getSpecies().equals(species)) {
                 searchList.add(animal);
             }
         }
-
         return searchList;
     }
 

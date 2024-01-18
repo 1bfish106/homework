@@ -44,7 +44,7 @@ public class AnimalMenu {
                    searchname();
                    break;
                case 5:
-                   searchname();
+                   searchSpecies();
                    break;
                case 6:
                    updatespecies();
@@ -143,11 +143,11 @@ public class AnimalMenu {
     public void searchSpecies(){
         System.out.println("====종으로 검색====");
         System.out.println("종을 입력하세요 : ");
-        List<AnimalDTO> searchList = animalManager.searchSpecies(sc.nextLine());
+        List<AnimalDTO> searchList = animalManager.searchSpecies(sc.nextLine().trim().toLowerCase());
 
         if(!searchList.isEmpty()){
-            for (int i = 0; i < searchList.size(); i++){
-                System.out.println(searchList.get(i));
+            for (AnimalDTO animalDTO : searchList) {
+                System.out.println(animalDTO);
             }
         }else{
             System.out.println("검색결과가 없습니다.");
@@ -160,6 +160,7 @@ public class AnimalMenu {
         int id = sc.nextInt();
         System.out.println("수정할 동물 명 : ");
         String updatename = sc.nextLine();
+        sc.nextLine();
         System.out.println("수정할 종 : ");
         String updatespecies = sc.nextLine();
 
