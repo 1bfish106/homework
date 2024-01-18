@@ -65,9 +65,9 @@ public class AnimalMenu {
    }
     public void addList() {
         System.out.println("===== 동물 추가 =====");
-        System.out.print("동물 이름 입력 : ");
+        System.out.print("동물 이름 입력하세요 :  ");
         String name = sc.nextLine();
-        System.out.print("종 입력 : ");
+        System.out.print("해당하는 종을 입력하세요 : ");
         String species = sc.nextLine();
 
       animalManager.addList(new AnimalDTO(name, species));
@@ -96,32 +96,42 @@ public class AnimalMenu {
         Descname(menu);
     }
 
-    public void Descname(int menu){
+    public void Descname(int menu) {
         System.out.println("=====정렬하여 조회=====");
         List<AnimalDTO> animalList = animalManager.selectAnimal();
 
-        if (animalList.isEmpty()){
+        if (animalList.isEmpty()) {
             System.out.println("목록이 존재하지않습니다.");
             return;
         }
-        List<AnimalDTO> sortList = new ArrayList<>();
-        sortList.addAll(animalList);
 
-        if(menu == 1)
-            sortList.sort(new Comparator<AnimalDTO>() {
-                @Override
-                public int compare(AnimalDTO o1, AnimalDTO o2) {
-                    return o1.getName().compareTo(o2.getName());
-                }
-            });else if (menu == 2){
-                sortList.sort(new AscSpecies());
-        }else if (menu == 3){
-                sortList.sort(new Descname());
-        }else {
-                sortList.sort(new Descspecies());
-        }
-        for (int i = 0; i < sortList.size(); i++){
-            System.out.println(sortList.get(i));
+        List<AnimalDTO> sortList = new ArrayList<>(animalList);
+
+        if (menu == 1) {
+
+            switch (menu) {
+                case 1:
+                    sortList.sort(new Comparator<AnimalDTO>() {
+                        @Override
+                        public int compare(AnimalDTO o1, AnimalDTO o2) {
+                            return o1.getName().compareTo(o2.getName());
+                        }
+                    });
+                    break;
+                case 2:
+                    sortList.sort(new AscSpecies());
+                    break;
+                case 3:
+                    sortList.sort(new Comparator<AnimalDTO>() {
+                        @Override
+                        public int compare(AnimalDTO o1, AnimalDTO o2) {
+                            return o2.getName().compareTo(o1.getName());
+                        }
+                    });
+                    break;
+                default:
+                    sortList.sort(new Descspecies());
+            }
         }
     }
 

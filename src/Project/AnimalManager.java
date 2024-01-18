@@ -7,10 +7,11 @@ public class AnimalManager {
 
     private List<AnimalDTO> animalList = new ArrayList<>();
 
+    //동물을 추가할거다
     public void addList(AnimalDTO animal){
         animalList.add(animal);
     }
-
+    //동물 리스트를 반환할거다 애니멀디티오에
     public List<AnimalDTO> selectAnimal(){
         return animalList;
     }
@@ -35,7 +36,7 @@ public class AnimalManager {
 
         return searchList;
     }
-
+    
     public boolean updateAnimal(AnimalDTO updateAnimal){
         AnimalDTO old = null;
         for (int i = 0; i < animalList.size(); i++){
