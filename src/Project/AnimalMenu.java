@@ -170,6 +170,12 @@ public class AnimalMenu {
         System.out.println("수정할 동물 명 : ");
         String updatename = sc.nextLine();
         sc.nextLine();
+
+        String currentSpecies = animalManager.getAnimalSpeciesById(id);
+        if (currentName != null) {
+            System.out.println("현재 동물 종: " + currentSpecies);
+        }
+
         System.out.println("수정할 종 : ");
         String updatespecies = sc.nextLine();
 

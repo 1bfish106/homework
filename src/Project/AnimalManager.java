@@ -64,5 +64,15 @@ public class AnimalManager {
         }
         return null; // 해당 ID에 해당하는 동물이 없을 경우
     }
+
+    public String getAnimalSpeciesById(int id) {
+        for (AnimalDTO animal : animalList) {
+            if (animal.getId() == id) {
+                return animal.getSpecies();
+            }
+        }
+        return null; // 해당 ID에 해당하는 동물이 없을 경우
+    }
+
 }
 
