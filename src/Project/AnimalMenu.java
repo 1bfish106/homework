@@ -156,8 +156,17 @@ public class AnimalMenu {
     }
     public void updatespecies(){
         System.out.println("====동물 정보 수정====");
-        System.out.println("수정할 동물의 id : ");
+        System.out.println("수정할 동물의 id를 입력하세요 : ");
         int id = sc.nextInt();
+
+        // 그냥 하면 넘어가지질않아서
+        // 입력 버퍼에 남아 있는 새 줄 문자 소비
+        sc.nextLine();
+
+        String currentName = animalManager.getAnimalNameById(id);
+        if (currentName != null) {
+            System.out.println("현재 동물 명: " + currentName);
+        }
         System.out.println("수정할 동물 명 : ");
         String updatename = sc.nextLine();
         sc.nextLine();
