@@ -7,19 +7,19 @@ public class AnimalManager {
 
     private List<AnimalDTO> animalList = new ArrayList<>();
 
-    public void addList(AnimalDTO animal){
+    public void addList(AnimalDTO animal) {
         animalList.add(animal);
     }
 
-    public List<AnimalDTO> selectAnimal(){
+    public List<AnimalDTO> selectAnimal() {
         return animalList;
     }
 
-    public List<AnimalDTO> searchname(String name){
+    public List<AnimalDTO> searchname(String name) {
         List<AnimalDTO> searchList = new ArrayList<>();
 
-        for(AnimalDTO animal : animalList){
-            if(animal.getName().contains(name)){
+        for (AnimalDTO animal : animalList) {
+            if (animal.getName().contains(name)) {
                 searchList.add(animal);
             }
         }
@@ -36,27 +36,43 @@ public class AnimalManager {
         return searchList;
     }
 
-    public boolean updateAnimal(AnimalDTO updateAnimal){
+    public boolean updateAnimal(AnimalDTO updateAnimal) {
         AnimalDTO old = null;
-        for (int i = 0; i < animalList.size(); i++){
-            if(animalList.get(i).getId() == updateAnimal.getId()){
+        for (int i = 0; i < animalList.size(); i++) {
+            if (animalList.get(i).getId() == updateAnimal.getId()) {
                 old = animalList.set(i, updateAnimal);
             }
         }
         return old != null;
     }
 
-    public boolean removeAnimal (int id){
-        AnimalDTO old = null;
-        for(int i = 0; i < animalList.size(); i++){
-            if(animalList.get(i).getId() == id){
-                old = animalList.remove(i);
+    public boolean removeAnimal(int id) {
+        int indexToRemove = -1;
+        for (int i = 0; i < animalList.size(); i++) {
+            if (animalList.get(i).getId() == id) {
+                indexToRemove = i;
+                break;
+
             }
         }
-        return old != null;
+        if (indexToRemove != -1) {
+            animalList.remove(indexToRemove);
+            adjustIdsAfterRemoval(indexToRemove);
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
-    public String getAnimalNameById(int id) {
+    private void adjustIdsAfterRemoval(int startIndex) {
+        for (int i = startIndex; i < animalList.size(); i++) {
+            AnimalDTO animal = animalList.get(i);
+            animal.setId(animal.getId() - 1);
+        }
+
+    }
+    public String getAnimalNameById(int id){
         for (AnimalDTO animal : animalList) {
             if (animal.getId() == id) {
                 return animal.getName();
@@ -65,7 +81,7 @@ public class AnimalManager {
         return null; // 해당 ID에 해당하는 동물이 없을 경우
     }
 
-    public String getAnimalSpeciesById(int id) {
+    public String getAnimalSpeciesById(int id){
         for (AnimalDTO animal : animalList) {
             if (animal.getId() == id) {
                 return animal.getSpecies();
@@ -73,6 +89,5 @@ public class AnimalManager {
         }
         return null; // 해당 ID에 해당하는 동물이 없을 경우
     }
-
 }
 

@@ -29,7 +29,7 @@ public class AnimalMenu {
            System.out.println("메뉴선택 : ");
            int menu = sc.nextInt();
            sc.nextLine();
-            mainMenu:
+
            switch (menu){
                case 1:
                    addList();
@@ -54,7 +54,7 @@ public class AnimalMenu {
                    break;
                case 0:
                    System.out.println("프로그램을 종료합니다.");
-                   break mainMenu;
+                   return;
                default:
                    System.out.println("잘못 선택하셨습니다. 번호를 다시 입력해주세요.");
                    break;
